@@ -1,7 +1,6 @@
 {
   "name": "matriz-loca",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "Matriz loca.js",
   "scripts": {

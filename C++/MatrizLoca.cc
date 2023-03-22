@@ -30,8 +30,7 @@ void solution()
             if (j + 1 < y)
                 std::cout << " ";
         }
-        if (i + 1 < x)
-            std::cout << std::endl;
+        std::cout << std::endl;
     }
 }
 

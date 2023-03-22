@@ -1,38 +1,38 @@
-import * as readline from 'node:readline';
+const matrixLoca = () => {
+  let input = '';
+  let size = '';
+  let matrix = [];
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false
-});
+  process.stdin.setEncoding('utf8');
 
-const matrizLoca = async () => {
-  const size = await new Promise((resolve) => rl.question('', resolve));
+  process.stdin.on('data', chunk => {
+    input += chunk;
+  });
 
-  let x, y;
-  x = size.split(' ')[0];
-  y = size.split(' ')[1];
+  process.stdin.on('end', () => {
+    input = input.trim().split('\n');
 
-  const matrix = [];
+    size = input.shift().split(' ');
 
-  for (let i = 0; i < x; i++) {
-    const row = await new Promise((resolve) => rl.question('', resolve));
-    matrix[i] = row.split(' ').map(value => Number.parseInt(value));
-  }
+    const x = size[0];
+    const y = size[1];
 
-  for (let i = 0; i < x; i++) {
-    for (let j = 0; j < y; j++) {
-      if (i % 2 == 0) matrix[i][j] += 1;
-      if (j % 2 == 0) matrix[i][j] += 2;
-      if (i % 2 != 0 && j % 2 != 0) matrix[i][j] -= 3;
+    for (let i = 0; i < x; i++) {
+      matrix[i] = input[i].split(' ').map(value => Number.parseInt(value));
     }
-  }
 
-  matrix.forEach(row => {
-    console.log(row.join(' '));
+    for (let i = 0; i < x; i++) {
+      for (let j = 0; j < y; j++) {
+        if (i % 2 == 0) matrix[i][j] += 1;
+        if (j % 2 == 0) matrix[i][j] += 2;
+        if (i % 2 != 0 && j % 2 != 0) matrix[i][j] -= 3;
+      }
+    }
+
+    matrix.forEach(row => {
+      console.log(row.join(' '));
+    });
   });
 }
 
-matrizLoca()
-  .then(() => rl.close())
-  .catch(console.error);
+matrixLoca();
